@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class SimpleController : MonoBehaviour {
+public class SimpleController : NetworkBehaviour
+{
     public string HorizontalAxis = "Horizontal";
    
     public GameObject Projectile;
@@ -18,7 +20,10 @@ public class SimpleController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (!isLocalPlayer)
+        {
+            return;
+        }
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * velocity, Input.GetAxis("Vertical") * velocity);
         //if (grounded && Input.GetButtonDown(JumpAxis))
         //{
