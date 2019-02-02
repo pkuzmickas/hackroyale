@@ -36,7 +36,12 @@ public class SimpleController : NetworkBehaviour
         //    Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         //    obj.GetComponent<Rigidbody2D>().velocity = new Vector2(ProjectileVelocity, 0f);
         //}
-	}
+
+        GameObject gas = GameObject.Find("Gas");
+        
+
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         grounded = true;
