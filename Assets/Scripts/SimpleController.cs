@@ -1,26 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class SimpleController : MonoBehaviour {
+public class SimpleController : NetworkBehaviour
+{
     public string HorizontalAxis = "Horizontal";
    
-    public GameObject Projectile;
     Rigidbody2D rb;
     public float velocity=5f;
-    public float ProjectileVelocity=7f;
+    public float ProjectileVelocity = 7f;
+    GameObject camera;
+    public float smoothTime = 0.3f;
+    private Vector3 velocity3 = Vector3.zero;
+
+
     [ReadOnly]
-    public bool grounded;
 
     public Rigidbody2D bullet;
 	// Use this for initialization
 	void Start () {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
         rb = GetComponent<Rigidbody2D>();
-	}
+        camera = GameObject.Find("Main Camera");
+    }
 
     // Update is called once per frame
     void Update() {
-
+        transform.position = new Vector3(transform.position.x, transform.position.y, -5);
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        Vector3 goalPos = transform.position;
+        //goalPos.y = transform.position.y;
+        camera.transform.position = Vector3.SmoothDamp(camera.transform.position, goalPos, ref velocity3, smoothTime);
+        camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y, -10);
+        
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * velocity, Input.GetAxis("Vertical") * velocity);
         //transform.rotation = transform.Rotate(0, 0, -(Input.GetAxis("Mouse X")) Time.deltaTime speed);
 
@@ -29,20 +48,10 @@ public class SimpleController : MonoBehaviour {
             if (Input.mousePosition.x < Screen.width / 2)
             {
                 transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal")) * 180 / Mathf.PI);
-                //Rigidbody2D bulletInstance = Instantiate(bullet, transform.position, Quaternion.Euler(new Vector3(0, 0, transform.localEulerAngles.z))) as Rigidbody2D;
-                //bulletInstance.GetComponent<Rigidbody2D>().AddForce(transform.right * ProjectileVelocity);
 
             }
         }
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        //    diff.Normalize();
-
-        //    float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        //    transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
-
-        //}
+        
         if (Input.touchCount > 0)
         {
 
@@ -66,34 +75,7 @@ public class SimpleController : MonoBehaviour {
             }
         }
 
-        //if (Input.touchCount > 0)
-        //{
-        //    Debug.Log("Left click");
-        //    var touch = Input.GetTouch(0);
-        //    if (touch.position.x < Screen.width / 2)
-        //    {
-        //        Debug.Log("Left click");
-        //    }
-        //    else if (touch.position.x > Screen.width / 2)
-        //    {
-        //        Vector3 touchPos = Input.GetTouch(0).position;
-        //        touchPos.z = 0.0f;
-        //        transform.LookAt(touchPos);
-        //    }
-        //}
+        
 
-
-    }
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        grounded = true;
-    }
-    void OnCollisionStay2D(Collision2D col)
-    {
-        grounded = true;
-    }
-    void OnCollisionExit2D(Collision2D col)
-    {
-        grounded = false;
     }
 }
