@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(LineRenderer))]
-public class BorderControl : MonoBehaviour
+public class BorderControl : NetworkBehaviour
 {
-    CircleCollider2D myCollider;
+    public CircleCollider2D myCollider;
 
-    [Range(0, 150)]
     public int segments = 150;
-    [Range(0, 500)]
-    public float xradius = 10;
-    [Range(0, 500)]
+
+    [SyncVar] public float xradius = 10;
     public float yradius = 10;
     LineRenderer line;
     bool endGame = false;
@@ -51,21 +50,28 @@ public class BorderControl : MonoBehaviour
         if (endGame == true)
             return;
 
+        yradius = xradius;
+        myCollider.radius = xradius;
+        CreatePoints();
+
+        if (!isServer)
+            return;
+
         float rad = 0;
-        if (myCollider.radius > 0.05)
+        if (xradius > 0.05)
         {
-            myCollider.radius -= 0.001f;
             xradius -= 0.001f;
-            yradius -= 0.001f;
-            rad = myCollider.radius;
-            CreatePoints();
+            yradius = xradius;
+            myCollider.radius = xradius;
+            
+            rad = xradius;
         }
 
         if (rad <= 0.05)
         {
-            myCollider.radius = 0;
             xradius = 0;
-            yradius = 0;
+            yradius = xradius;
+            myCollider.radius = xradius;
             CreatePoints();
             endGame = true;
         }
@@ -73,6 +79,7 @@ public class BorderControl : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+
         Debug.Log("TEST EXIT");
         GameObject hit = other.gameObject;
         PlayerHealth health = hit.GetComponent<PlayerHealth>();

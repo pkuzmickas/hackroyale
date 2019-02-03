@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : NetworkBehaviour {
 
     public const int maxHP = 100;
-    public int curHealth = maxHP;
+    [SyncVar (hook = "OnChangeHealth")] public int curHealth = maxHP;
     private bool outsideZone = false;
     private float timer = 0.0f;
-    private bool bloodEnabled = false;
+    [SyncVar (hook = "SetOutsideZone")] public bool bloodEnabled = false;
     public GameObject zjbs;
 
     public RectTransform hpBar;
@@ -21,20 +22,12 @@ public class PlayerHealth : MonoBehaviour {
 
     public void TakeDamage(int nr)
     {
-        curHealth -= nr;
-        if (curHealth <= 0)
+        if(!isServer)
         {
-            gameObject.GetComponent<Animator>().SetTrigger("death");
-            curHealth = 0;
-            Debug.Log("DED");
-            outsideZone = false;
-            zjbs.SetActive(false);
+            return;
         }
 
-        bloodEnabled = true;
-        GameObject.Find("blood").GetComponent<Image>().enabled = bloodEnabled;
-
-        hpBar.sizeDelta = new Vector2(curHealth*2, hpBar.sizeDelta.y);
+        curHealth -= nr;
     }
 
     public void SetOutsideZone(bool isOut)
@@ -69,4 +62,24 @@ public class PlayerHealth : MonoBehaviour {
         
 
 	}
+
+    void OnChangeHealth(int health)
+    {
+        curHealth = health;
+        if (curHealth <= 0)
+        {
+            gameObject.GetComponent<Animator>().SetTrigger("death");
+            curHealth = 0;
+            Debug.Log("DED");
+            outsideZone = false;
+            zjbs.SetActive(false);
+        }
+
+        if (isLocalPlayer)
+        {
+            bloodEnabled = true;
+            GameObject.Find("blood").GetComponent<Image>().enabled = bloodEnabled;
+        }
+        hpBar.sizeDelta = new Vector2(curHealth * 2, hpBar.sizeDelta.y);
+    }
 }
