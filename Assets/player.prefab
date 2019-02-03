@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 1008210272479802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 224350653512498680}
   - {fileID: 4592314272941136}
@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curHealth: 100
+  bloodEnabled: 0
   zjbs: {fileID: 1007726224861076}
   hpBar: {fileID: 224546093355104698}
 --- !u!114 &114396091004186476

@@ -81,7 +81,8 @@ public class PlayerHealth : NetworkBehaviour {
             GameObject.Find("blood").GetComponent<Image>().enabled = bloodEnabled;
             if (curHealth <= 0)
             {
-                GameObject.Find("gameover").GetComponent<Image>().enabled = bloodEnabled;
+                GameObject.Find("gameover").GetComponent<Image>().enabled = true;
+                Destroy(gameObject);
             }
         }
         hpBar.sizeDelta = new Vector2(curHealth * 2, hpBar.sizeDelta.y);

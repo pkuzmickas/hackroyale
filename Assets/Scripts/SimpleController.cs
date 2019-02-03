@@ -6,7 +6,6 @@ using UnityEngine.Networking;
 public class SimpleController : NetworkBehaviour
 {
     public string HorizontalAxis = "Horizontal";
-
     Rigidbody2D rb;
     public float velocity = 5f;
     public float ProjectileVelocity = 7f;
@@ -28,6 +27,18 @@ public class SimpleController : NetworkBehaviour
         GameObject.Find("Gas").GetComponent<BorderControl>().enabled = true;
         rb = GetComponent<Rigidbody2D>();
         camera = GameObject.Find("Main Camera");
+        GameObject.Find("Knob").GetComponent<Canvas>().enabled = true;
+        GameObject.Find("KnobBackground").GetComponent<Canvas>().enabled = true;
+        var count = GameObject.Find("Players").GetComponent<count>();
+        count.players++;
+        if (count.players > 1 && isLocalPlayer)
+        {
+            count.gameStarted = true;
+        }
+        else if(isLocalPlayer)
+        {
+            count.gameStarted = false;
+        }
     }
 
     // Update is called once per frame
@@ -172,4 +183,10 @@ public class SimpleController : NetworkBehaviour
         //NetworkServer.Destroy(bullet);
     }
 
+
+    private void OnDestroy()
+    {
+        GameObject.Find("Knob").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("KnobBackground").GetComponent<Canvas>().enabled = false;
+    }
 }
