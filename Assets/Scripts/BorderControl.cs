@@ -16,8 +16,16 @@ public class BorderControl : NetworkBehaviour
 
     void Start()
     {
+        
+    }
+
+    private void OnEnable()
+    {
+        yradius = 10;
+        xradius = 10;
         //Assigns the attached CircleCollider to myCollider
         myCollider = GetComponent<CircleCollider2D>();
+        myCollider.radius = xradius;
 
         line = gameObject.GetComponent<LineRenderer>();
 

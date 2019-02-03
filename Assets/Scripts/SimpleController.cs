@@ -21,10 +21,10 @@ public class SimpleController : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
+        //if (!isLocalPlayer)
+        //{
+        //    return;
+        //}
         GameObject.Find("Gas").GetComponent<BorderControl>().enabled = true;
         rb = GetComponent<Rigidbody2D>();
         camera = GameObject.Find("Main Camera");
@@ -83,10 +83,10 @@ public class SimpleController : NetworkBehaviour
                 float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
 
-                GameObject bulletO = Instantiate(bullet.gameObject, transform.position, Quaternion.Euler(new Vector3(0, 0, transform.localEulerAngles.z))) as GameObject;
+                GameObject bulletO = Instantiate(bullet.gameObject, transform.GetChild(1).gameObject.transform.position, Quaternion.Euler(new Vector3(0, 0, transform.localEulerAngles.z))) as GameObject;
                 Rigidbody2D bulletInstance = bulletO.GetComponent<Rigidbody2D>();
-                bulletInstance.AddForce(transform.right * ProjectileVelocity);
-
+                //bulletInstance.AddForce(transform.right * ProjectileVelocity);
+                bulletInstance.velocity = transform.right * ProjectileVelocity;
                 Physics2D.IgnoreCollision(bulletO.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
                 Destroy(bulletO, 3);
@@ -134,15 +134,15 @@ public class SimpleController : NetworkBehaviour
     [Command]
     void CmdFire(Vector2 touchPos, GameObject player)
     {
-        GameObject bulletO = Instantiate(bullet.gameObject, player.transform.position, Quaternion.Euler(new Vector3(0, 0, player.transform.localEulerAngles.z))) as GameObject;
+        GameObject bulletO = Instantiate(bullet.gameObject, player.transform.GetChild(1).gameObject.transform.position, Quaternion.Euler(new Vector3(0, 0, player.transform.localEulerAngles.z))) as GameObject;
         Rigidbody2D bulletInstance = bulletO.GetComponent<Rigidbody2D>();
-        bulletInstance.AddForce(player.transform.right * ProjectileVelocity);
-        //bulletInstance.velocity = player.transform.right * ProjectileVelocity;
+        //bulletInstance.AddForce(player.transform.right * ProjectileVelocity);
+        bulletInstance.velocity = player.transform.right * ProjectileVelocity;
 
         Physics2D.IgnoreCollision(bulletO.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
 
         NetworkServer.Spawn(bulletO);
-
+        
         Destroy(bulletO, 3);
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -152,5 +152,24 @@ public class SimpleController : NetworkBehaviour
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
         }
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        //Debug.Log(collision.tag);
+        //if (collision.tag == "bullet")
+        //{
+        //    GetComponent<PlayerHealth>().TakeDamage(1);
+        //    CmdDestroyBullet(collision.gameObject);
+        //    Destroy(collision.gameObject);
+        //}
+    }
+
+    [Command]
+    void CmdDestroyBullet(GameObject bullet)
+    {
+        //Destroy(collision);
+        //NetworkServer.Destroy(bullet);
+    }
+
 }

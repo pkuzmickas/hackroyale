@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 151158260}
   - component: {fileID: 151158259}
   - component: {fileID: 151158263}
+  - component: {fileID: 151158262}
   m_Layer: 0
   m_Name: Gas
   m_TagString: Untagged
@@ -143,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8736fd10b43e72b41b01ba0d050c70c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myCollider: {fileID: 0}
   segments: 150
   xradius: 10
   yradius: 10
@@ -171,11 +173,43 @@ Transform:
   m_GameObject: {fileID: 151158258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &151158262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 151158258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 171
+    i1: 139
+    i2: 209
+    i3: 159
+    i4: 96
+    i5: 198
+    i6: 238
+    i7: 196
+    i8: 232
+    i9: 98
+    i10: 197
+    i11: 55
+    i12: 43
+    i13: 181
+    i14: 47
+    i15: 54
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!120 &151158263
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1017,6 +1051,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114156777502373042, guid: 985d0d83bed35e9489a23d5b20f177d4,
+        type: 2}
+      propertyPath: m_SpawnPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4264848538499852, guid: 985d0d83bed35e9489a23d5b20f177d4, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1053,7 +1092,13 @@ Prefab:
         type: 2}
       propertyPath: m_PlayerPrefab
       value: 
-      objectReference: {fileID: 1187444312178010, guid: 143ac84701fac7840b83d28b19638661,
+      objectReference: {fileID: 1008210272479802, guid: 143ac84701fac7840b83d28b19638661,
+        type: 2}
+    - target: {fileID: 114156777502373042, guid: 985d0d83bed35e9489a23d5b20f177d4,
+        type: 2}
+      propertyPath: m_SpawnPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1827952231804498, guid: f443c773e7b84554491add9c0b7ae303,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 985d0d83bed35e9489a23d5b20f177d4, type: 2}
