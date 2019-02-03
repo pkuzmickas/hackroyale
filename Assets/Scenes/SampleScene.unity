@@ -277,6 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 265409257}
   - component: {fileID: 265409256}
+  - component: {fileID: 265409258}
   m_Layer: 0
   m_Name: pencollider
   m_TagString: Untagged
@@ -312,6 +313,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -22.227001}
+--- !u!114 &265409258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 265409255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2344ef0d3360d7d418ea9fe617f9f8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &355237784
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +493,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -495,6 +508,17 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2344ef0d3360d7d418ea9fe617f9f8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -563,6 +587,7 @@ GameObject:
   - component: {fileID: 679935129}
   - component: {fileID: 679935128}
   - component: {fileID: 679935127}
+  - component: {fileID: 679935133}
   m_Layer: 0
   m_Name: map
   m_TagString: Untagged
@@ -719,6 +744,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 1}
   serializedVersion: 2
   m_Radius: 2
+--- !u!114 &679935133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 679935124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2344ef0d3360d7d418ea9fe617f9f8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &800632478
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,6 +1293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1511340773}
   - component: {fileID: 1511340772}
+  - component: {fileID: 1511340774}
   m_Layer: 0
   m_Name: markercollider
   m_TagString: Untagged
@@ -1292,6 +1329,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 85.241005}
+--- !u!114 &1511340774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1511340771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2344ef0d3360d7d418ea9fe617f9f8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1643769502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,6 +1452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1916153310}
   - component: {fileID: 1916153309}
+  - component: {fileID: 1916153311}
   m_Layer: 0
   m_Name: scottlogiccollider
   m_TagString: Untagged
@@ -1439,6 +1488,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -54.425003}
+--- !u!114 &1916153311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1916153308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2344ef0d3360d7d418ea9fe617f9f8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2063762552
 GameObject:
   m_ObjectHideFlags: 0
