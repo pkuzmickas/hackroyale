@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class SimpleController : NetworkBehaviour
 {
@@ -29,17 +31,27 @@ public class SimpleController : NetworkBehaviour
         camera = GameObject.Find("Main Camera");
         GameObject.Find("Knob").GetComponent<Canvas>().enabled = true;
         GameObject.Find("KnobBackground").GetComponent<Canvas>().enabled = true;
-        var count = GameObject.Find("Players").GetComponent<count>();
+        //var count = GameObject.Find("Players").GetComponent<count>();
         count.players++;
-        if (count.players > 1 && isLocalPlayer)
+        Debug.Log("players:" + count.players);
+        if (count.players > 1)
         {
             count.gameStarted = true;
+            Debug.Log("GaME STARTED ");
         }
-        else if(isLocalPlayer)
+        else
         {
             count.gameStarted = false;
         }
     }
+    
+
+    //void OnGUI()
+    //{
+       
+    //        GUI.Label(new Rect(200,200,200,200), count.players.ToString());
+        
+    //}
 
     // Update is called once per frame
     void Update()
@@ -49,7 +61,16 @@ public class SimpleController : NetworkBehaviour
             return;
         }
         transform.position = new Vector3(transform.position.x, transform.position.y, -5);
-        
+
+        var ph = GetComponent<PlayerHealth>();
+
+
+        if (count.players == 1 && count.gameStarted && ph.curHealth > 0)
+        {
+            Debug.Log("WE HAVE A WINNER");
+            GameObject.Find("victory").GetComponent<Image>().enabled = true;
+        }
+
         Vector3 goalPos = transform.position;
         //goalPos.y = transform.position.y;
         camera.transform.position = Vector3.SmoothDamp(camera.transform.position, goalPos, ref velocity3, smoothTime);

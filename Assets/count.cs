@@ -5,6 +5,6 @@ using UnityEngine.Networking;
 
 public class count : NetworkBehaviour {
 
-    public int players = 0;
-    public bool gameStarted = false;
+    public static int players = 0;
+    public static bool gameStarted = false;
 }

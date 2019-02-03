@@ -23,6 +23,8 @@ public class BorderControl : NetworkBehaviour
     private void OnEnable()
     {
         GameObject.Find("gameover").GetComponent<Image>().enabled = false;
+        GameObject.Find("victory").GetComponent<Image>().enabled = false;
+        count.players = 0;
         yradius = 10;
         xradius = 10;
         //Assigns the attached CircleCollider to myCollider

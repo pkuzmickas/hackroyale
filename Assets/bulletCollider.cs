@@ -11,7 +11,7 @@ public class bulletCollider : MonoBehaviour {
         if (collision.tag == "Player")
         {
             Debug.Log(collision.tag + "hit");
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(7);
             //CmdDestroyBullet(collision.gameObject);
             GetComponent<SpriteRenderer>().enabled = false;
             Destroy(gameObject, 1);

@@ -593,6 +593,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 416759152}
   m_CullTransparentMesh: 0
+--- !u!1001 &498070351
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4105943576988108, guid: e35f27e4934b52945b48b2701b4cb762, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.400814
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105943576988108, guid: e35f27e4934b52945b48b2701b4cb762, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.6754991
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105943576988108, guid: e35f27e4934b52945b48b2701b4cb762, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.8959397
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105943576988108, guid: e35f27e4934b52945b48b2701b4cb762, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105943576988108, guid: e35f27e4934b52945b48b2701b4cb762, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105943576988108, guid: e35f27e4934b52945b48b2701b4cb762, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105943576988108, guid: e35f27e4934b52945b48b2701b4cb762, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105943576988108, guid: e35f27e4934b52945b48b2701b4cb762, type: 2}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e35f27e4934b52945b48b2701b4cb762, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &501851575
 GameObject:
   m_ObjectHideFlags: 0
@@ -3426,8 +3468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a801d0dc697bd44bc02c9aa3332bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: 0
-  gameStarted: 0
 --- !u!4 &1586123213
 Transform:
   m_ObjectHideFlags: 0

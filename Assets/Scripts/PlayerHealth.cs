@@ -43,16 +43,15 @@ public class PlayerHealth : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(outsideZone == true)
+        timer += Time.deltaTime;
+        if (bloodEnabled == true && timer > 1.0f)
         {
-            timer += Time.deltaTime;
-
-            if (bloodEnabled == true && timer > 1.0f)
-            {
-                bloodEnabled = false;
-                GameObject.Find("blood").GetComponent<Image>().enabled = bloodEnabled;
-            }
-
+            bloodEnabled = false;
+            GameObject.Find("blood").GetComponent<Image>().enabled = bloodEnabled;
+        }
+        if (outsideZone == true)
+        {
+            
             if (timer > 2.0f)
             {
                 timer = 0.0f;
@@ -73,16 +72,20 @@ public class PlayerHealth : NetworkBehaviour {
             Debug.Log("DED");
             outsideZone = false;
             zjbs.SetActive(false);
+            SoundManagerScript.PlaySound("death");
+            count.players--;
         }
 
         if (isLocalPlayer)
         {
             bloodEnabled = true;
+            timer = 0.0f;
             GameObject.Find("blood").GetComponent<Image>().enabled = bloodEnabled;
             if (curHealth <= 0)
             {
-                GameObject.Find("gameover").GetComponent<Image>().enabled = true;
-                Destroy(gameObject);
+                GameObject.Find("gameover").GetComponent<Image>().enabled = bloodEnabled;
+                Destroy(gameObject, 1.5f);
+                
             }
         }
         hpBar.sizeDelta = new Vector2(curHealth * 2, hpBar.sizeDelta.y);
