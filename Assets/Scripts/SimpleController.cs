@@ -24,6 +24,7 @@ public class SimpleController : NetworkBehaviour
         {
             return;
         }
+        GameObject.Find("Gas").GetComponent<BorderControl>().enabled = true;
         rb = GetComponent<Rigidbody2D>();
         camera = GameObject.Find("Main Camera");
     }
