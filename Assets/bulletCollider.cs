@@ -14,7 +14,15 @@ public class bulletCollider : MonoBehaviour {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(7);
             //CmdDestroyBullet(collision.gameObject);
             GetComponent<SpriteRenderer>().enabled = false;
+            if(collision.tag == "Player")
+            {
+                if(collision.gameObject.GetComponent<PlayerHealth>().curHealth <=0)
+                {
+                    collision.gameObject.GetComponent<Collider2D>().enabled = false;
+                }
+            }
             Destroy(gameObject, 1);
+            
         }
     }
 }

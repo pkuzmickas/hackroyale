@@ -44,13 +44,13 @@ public class SimpleController : NetworkBehaviour
             count.gameStarted = false;
         }
     }
-    
+
 
     //void OnGUI()
     //{
-       
-    //        GUI.Label(new Rect(200,200,200,200), count.players.ToString());
-        
+
+    //    GUI.Label(new Rect(200, 200, 200, 200), count.players.ToString());
+
     //}
 
     // Update is called once per frame
@@ -65,7 +65,7 @@ public class SimpleController : NetworkBehaviour
         var ph = GetComponent<PlayerHealth>();
 
 
-        if (count.players == 1 && count.gameStarted && ph.curHealth > 0)
+        if (count.players <= 1 && count.gameStarted && ph.curHealth > 0)
         {
             Debug.Log("WE HAVE A WINNER");
             GameObject.Find("victory").GetComponent<Image>().enabled = true;

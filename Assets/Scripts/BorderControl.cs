@@ -72,7 +72,7 @@ public class BorderControl : NetworkBehaviour
         float rad = 0;
         if (xradius > 0.05)
         {
-            xradius -= 0.001f;
+            xradius -= 0.002f;
             yradius = xradius;
             myCollider.radius = xradius;
             
