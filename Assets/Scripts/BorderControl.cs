@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(LineRenderer))]
 public class BorderControl : NetworkBehaviour
@@ -21,6 +22,7 @@ public class BorderControl : NetworkBehaviour
 
     private void OnEnable()
     {
+        GameObject.Find("gameover").GetComponent<Image>().enabled = false;
         yradius = 10;
         xradius = 10;
         //Assigns the attached CircleCollider to myCollider

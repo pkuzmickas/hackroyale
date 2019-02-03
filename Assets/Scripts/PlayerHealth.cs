@@ -10,7 +10,7 @@ public class PlayerHealth : NetworkBehaviour {
     [SyncVar (hook = "OnChangeHealth")] public int curHealth = maxHP;
     private bool outsideZone = false;
     private float timer = 0.0f;
-    [SyncVar (hook = "SetOutsideZone")] public bool bloodEnabled = false;
+    [SyncVar] public bool bloodEnabled = false;
     public GameObject zjbs;
 
     public RectTransform hpBar;
@@ -79,6 +79,10 @@ public class PlayerHealth : NetworkBehaviour {
         {
             bloodEnabled = true;
             GameObject.Find("blood").GetComponent<Image>().enabled = bloodEnabled;
+            if (curHealth <= 0)
+            {
+                GameObject.Find("gameover").GetComponent<Image>().enabled = bloodEnabled;
+            }
         }
         hpBar.sizeDelta = new Vector2(curHealth * 2, hpBar.sizeDelta.y);
     }
